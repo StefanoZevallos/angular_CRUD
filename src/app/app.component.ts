@@ -25,6 +25,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     const storedData = localStorage.getItem('datos');
     this.datos = storedData ? JSON.parse(storedData) : [];
+    console.log(this.datos);
+    console.log(this.persona);
+    
   }
   
   abrirModal(id:any,indice:any) {
@@ -40,9 +43,9 @@ export class AppComponent implements OnInit {
       this.datos[this.indiceSeleccionado].correo = res.content.correo
       this.datos[this.indiceSeleccionado].telefono = res.content.telefono
       localStorage.setItem('datos', JSON.stringify(this.datos));
-      this.persona= {}
     });      
       this.mostrarModal=false;
+      this.persona = {}
       alert("Usuario Editado exitosamente")
   }
 
@@ -53,12 +56,12 @@ export class AppComponent implements OnInit {
         if (res.content) {
           this.datos.push(res.content);
           localStorage.setItem('datos', JSON.stringify(this.datos));
+          this.persona = {}
         } else {
           console.error('La respuesta del servidor no es válida:', res.content);
         }
       },
       (error: any) => {
-        this.persona= {}
         alert('Error al crear al usuario, los correos deben ser únicos');
       }
     );
