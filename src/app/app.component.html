@@ -1,0 +1,88 @@
+<!-- BOTON EDITAR MODAL -->
+<div *ngIf="mostrarModal" class="modal-container">
+  <div class="modal-container-container">
+  <div class="form-container">
+    <p (click)="cerrarModal()"> CERRAR MODAL</p>
+    <form id="myForm">
+      <div class="form-group">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" [(ngModel)]="persona.nombre" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label for="correo" class="form-label">Correo:</label>
+        <input type="text" id="apellido" name="correo" [(ngModel)]="persona.correo" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label for="telefono" class="form-label">Telefono:</label>
+        <input type="email" id="telefono" name="telefono" [(ngModel)]="persona.telefono" class="form-input" required>
+      </div>
+      <button type="button" class="boton-agregar" (click)="editarUsuario()">Guardar Cambios</button>
+      <button type="button" class="boton-agregar" (click)="cerrarModal()">Cancelar</button>
+    </form>
+  </div>
+</div>
+</div>
+<!-- BOTON EDITAR MODAL -->
+<!-- ELIMINAR USUARIO MODAL -->
+<div *ngIf="mostrarModalEliminarUsuario" class="modal-container">
+  <div class="modal-container-container">
+  <div class="form-container">
+    <p (click)="cerrarModal()"> CERRAR MODAL</p>
+    <form id="myForm">
+      <p>¿Esás seguro que deseas eliminar este usuario?</p>
+      <button type="button" class="boton-agregar" (click)="borrarUsuario()">Sí</button>
+      <button type="button" class="boton-agregar" (click)="cerrarModalEliminarUsuario()">No</button>
+    </form>
+  </div>
+</div>
+</div>
+<!-- ELIMINAR USUARIO MODAL -->
+
+
+<div class="form-container">
+  <form id="myForm">
+    <div class="form-group ">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" id="nombre" name="nombre" [(ngModel)]="persona.nombre" class="form-input" required>
+      <div class="boton-agregar-container">
+        <button type="submmit" class="boton-agregar" (click)="agregarCampo()">Agregar</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="correo" class="form-label">Correo</label>
+      <input type="text" id="apellido" name="correo" [(ngModel)]="persona.correo" class="form-input" required>
+    </div>
+    <div class="form-group">
+      <label for="telefono" class="form-label">Telefono</label>
+      <input type="email" id="telefono" name="telefono" [(ngModel)]="persona.telefono" class="form-input" required>
+    </div>
+  </form>
+</div>
+
+<div class="tabla-resumen">
+  <div class="grid cabecera">
+    <p> ID </p>
+    <p> Nombre </p>
+    <p> Correo </p>
+    <p> Teléfono </p>
+    <p id="edit-button-cabecera"> Editar </p>
+    <p id="delete-button-cabecera">Eliminar</p>
+  </div>
+  <!-- Utiliza *ngFor para iterar sobre los datos y crear filas -->
+  <div class="grid fila" *ngFor="let dato of datos; let i = index">
+    <p>{{ dato.id }}</p>
+    <p>{{ dato.nombre }}</p>
+    <p>{{ dato.correo }}</p>
+    <p>{{ dato.telefono }}</p>
+    <p id="edit-button" (click)="abrirModal(dato.id,i)"> Editar </p>
+    <p id="delete-button" (click)="abrirModalEliminarUsuario(dato.id,i)">Eliminar</p>
+  </div>
+
+  
+
+
+
+
+
+
+  <router-outlet></router-outlet>
