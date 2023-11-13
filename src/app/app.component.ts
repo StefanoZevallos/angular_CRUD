@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
 
   editarUsuario() {
     this.service.editarPersona(`http://localhost:3000/usuario/${this.idSeleccionado}`, this.persona).subscribe(res => {
-      // console.log(res)
+     console.log(res)
       this.datos[this.indiceSeleccionado].nombre = res.content.nombre
       this.datos[this.indiceSeleccionado].correo = res.content.correo
       this.datos[this.indiceSeleccionado].telefono = res.content.telefono
@@ -48,23 +48,17 @@ export class AppComponent implements OnInit {
 
 
   agregarCampo() {
-    this.service.enviarPersona(this.url, this.persona).subscribe(
-      (res) => {
+    this.service.enviarPersona(`http://localhost:3000/registro`, this.persona).subscribe(res => {
         console.log(res);
-        // Asegurarse de que res.content sea un objeto y no un array
-        if (res.content && typeof res.content === 'object') {
-          // Agregar nuevo dato a la lista
+        if (res.content) {
           this.datos.push(res.content);
-          // Almacenar datos en localStorage después de cada actualización
           localStorage.setItem('datos', JSON.stringify(this.datos));
-          this.persona = {};
         } else {
           console.error('La respuesta del servidor no es válida:', res.content);
         }
       },
       (error: any) => {
         this.persona= {}
-        console.error('Error al crear al usuario, los correos deben ser únicos:', error);
         alert('Error al crear al usuario, los correos deben ser únicos');
       }
     );
