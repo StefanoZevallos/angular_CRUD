@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
       this.datos[this.indiceSeleccionado].correo = res.content.correo
       this.datos[this.indiceSeleccionado].telefono = res.content.telefono
       localStorage.setItem('datos', JSON.stringify(this.datos));
-      
+      this.persona= {}
     });      
       this.mostrarModal=false;
       alert("Usuario Editado exitosamente")
@@ -93,4 +93,3 @@ export class AppComponent implements OnInit {
   }
 
 }
-
