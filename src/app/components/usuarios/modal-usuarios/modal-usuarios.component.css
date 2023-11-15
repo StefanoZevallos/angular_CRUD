@@ -1,0 +1,67 @@
+.editar-modal-container,.eliminar-modal-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9)
+  }
+  
+  .modal-container-container {
+    height: fit-content;
+    border-radius: 10px;
+    background-color: #4CAF50;
+  }
+  
+  .boton-cerrar-container {
+    display: flex;
+    justify-content: end;
+    font-weight: bold;
+  }
+  
+  .boton-cerrar {
+    cursor: pointer;
+    margin-right: 5px;
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    height: 22px;
+    width: 22px;
+    background-color: red ;
+    color: white;
+  }
+  
+  .editar-formulario-container {
+    padding-top: 8px;
+    padding-bottom: 15px;
+    padding-left: 15px;
+    padding-right: 12px;
+  }
+  
+  .form-label-modal {
+    font-size: 20px;
+  }
+  
+  .form-input-modal {
+    margin-left: 10px;
+    width: 95%;
+    height: 25px;
+  }
+  
+  .form-group-modal {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    margin-bottom: 10px;
+  }
+  
+  .modal-botones-container {
+    margin-top: 15px;
+    height: 28px;
+    display: flex;
+    gap: 10px;
+  }
+  

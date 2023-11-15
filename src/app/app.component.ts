@@ -14,9 +14,11 @@ export class AppComponent implements OnInit {
 
   persona = {} as any;
   datosUsuario: any[] = [];
+  datosUsuarioFiltroNombre = []
 
   mostrarModalEditarUsuario = false
   mostrarModalEliminarUsuario = false
+  mostrarlModalAgregarUsuario = false
 
   idSeleccionado: any = ""
   indiceSeleccionado: any = ""
@@ -28,8 +30,15 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     const storedData = localStorage.getItem('datos');
     this.datosUsuario = storedData ? JSON.parse(storedData) : [];
+    console.log(this.datosUsuario);
+    
   }
  // Agregar Usuario Flujo 
+
+  abrirModalAgregarUsuario() {
+    this.mostrarlModalAgregarUsuario = true
+  }
+
   agregarUsuario() {
     this.service.enviarPersona(`http://localhost:3000/registro`, this.persona).subscribe(res => {
       console.log(res);
@@ -95,6 +104,7 @@ export class AppComponent implements OnInit {
   cerrarModalEliminarUsuario() {
     this.mostrarModalEliminarUsuario = false
   }
+
 
 }
 
