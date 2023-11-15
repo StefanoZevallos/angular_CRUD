@@ -17,11 +17,11 @@ export class RegistroService {
     return this.http.get(url)
   }
 
-  public eliminarPersona(url:string):Observable<any> {
+  public eliminarUsuario(url:string):Observable<any> {
     return this.http.delete(url)
   }
 
-  public editarPersona(url:string,body:string):Observable<any> {
+  public editarUsuario(url:string,body:string):Observable<any> {
     return this.http.put(url,body)
   }
 

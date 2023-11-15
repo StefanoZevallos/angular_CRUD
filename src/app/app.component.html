@@ -1,61 +1,69 @@
-<Header-Component> </Header-Component>
 
 <!-- EDITAR MODAL -->
-<div *ngIf="mostrarModal" class="modal-container">
+<div *ngIf="mostrarModalEditarUsuario" class="editar-modal-container">
+  <!-- modal -->
   <div class="modal-container-container">
     <div class="boton-cerrar-container">
       <div class="boton-cerrar">
-        <p (click)="cerrarModal()"> X</p>
+        <p (click)="cerrarModalEditarUsuario()"> X </p>
       </div>
     </div>
-    <form>
-    <section class="input-label-container">
-      <div class="input-label-container-container">
+    <form class="editar-formulario-container"> 
+      <section class="input-label-container">
         <div class="form-group-modal">
           <label for="correo" class="form-label-modal">Nombre:</label>
           <input class="form-input-modal" type="text" id="nombre" name="nombre" [(ngModel)]="persona.nombre" required>
         </div>
         <div class="form-group-modal">
           <label class="form-label-modal">Correo:</label>
-          <input class="form-input-modal" type="email"  id="correo" name="correo" [(ngModel)]="persona.correo" required>
+          <input class="form-input-modal" type="email" id="correo" name="correo" [(ngModel)]="persona.correo" required>
         </div>
         <div class="form-group-modal">
           <label class="form-label-modal" type="number">Telefono:</label>
           <input class="form-input-modal" id="telefono" name="telefono" [(ngModel)]="persona.telefono" required>
         </div>
+      </section>
+      <div class="modal-botones-container">
+        <button type="button" class="boton-agregar" (click)="editarUsuarioGuardarCambiosConfirmar()">Guardar Cambios</button>
+        <button type="button" class="boton-agregar" (click)="cerrarModalEditarUsuario()">Cancelar</button>
       </div>
-    </section>
-    <div class="modal-botones-container">
-      <button type="button" class="boton-agregar" (click)="editarUsuario()">Guardar Cambios</button>
-      <button type="button" class="boton-agregar" (click)="cerrarModal()">Cancelar</button>
-    </div>
     </form>
   </div>
+  <!-- modal -->
 </div>
 <!-- EDITAR MODAL -->
+
 <!-- ELIMINAR USUARIO MODAL -->
-<div *ngIf="mostrarModalEliminarUsuario" class="modal-container">
-  <div class="modal-container-container">
-    <div class="form-container">
-      <p (click)="cerrarModal()"> CERRAR MODAL</p>
-      <form id="myForm">
-        <p>¿Esás seguro que deseas eliminar este usuario?</p>
-        <button type="button" class="boton-agregar" (click)="borrarUsuario()">Sí</button>
-        <button type="button" class="boton-agregar" (click)="cerrarModalEliminarUsuario()">No</button>
-      </form>
+<div *ngIf="mostrarModalEliminarUsuario" class="eliminar-modal-container">
+
+  <div class="eliminar-modal-container-container">
+
+    <div class="boton-cerrar-container">
+      <div class="boton-cerrar">
+        <p (click)="cerrarModalEliminarUsuario()"> X </p>
+      </div>
     </div>
+    <section class="eliminar-modal-cotent-container">
+      <p style="font-size: large;font-weight: bold;  ">¿Estás seguro que deseas eliminar este usuario?</p>
+      <div class="eliminar-modal-botones-container">
+        <button type="button" class="boton-eliminar" (click)="eliminarUsuarioConfirmar()">Eliminar</button>
+        <button type="button" class="boton-cancelar" (click)="cerrarModalEliminarUsuario()">Cancelar</button>
+      </div>
+    </section>
+
   </div>
+
 </div>
 <!-- ELIMINAR USUARIO MODAL -->
-
-
+<app-header></app-header>
+<!-- Formulario Reg -->
 <div class="form-container">
   <form id="myForm">
     <div class="form-group ">
       <label for="nombre" class="form-label">Nombre</label>
       <input type="text" id="nombre" name="nombre" [(ngModel)]="persona.nombre" class="form-input" required>
       <div class="boton-agregar-container">
-        <button type="submmit" class="boton-agregar" (click)="agregarCampo()">Agregar</button>
+        <button type="submmit" class="boton-agregar" (click)="agregarUsuario()">Agregar</button>
       </div>
     </div>
     <div class="form-group">
@@ -68,27 +76,37 @@
     </div>
   </form>
 </div>
+<!-- resumen -->
 
-<div class="tabla-resumen">
-  <div class="grid cabecera">
+<div class="resumen-container">
+  <div class="grid-cabecera">
     <p> ID </p>
     <p> Nombre </p>
     <p> Correo </p>
     <p> Teléfono </p>
-    <p id="edit-button-cabecera"> Editar </p>
-    <p id="delete-button-cabecera">Eliminar</p>
+    <p> Editar </p>
+    <p>Eliminar</p>
   </div>
+
   <!-- Utiliza *ngFor para iterar sobre los datos y crear filas -->
-  <div class="grid fila" *ngFor="let dato of datos; let i = index">
+  <div class="grid-fila" *ngFor="let dato of datosUsuario; let i = index">
     <p>{{ dato.id }}</p>
     <p>{{ dato.nombre }}</p>
     <p>{{ dato.correo }}</p>
     <p>{{ dato.telefono }}</p>
-    <p id="edit-button" (click)="abrirModal(dato.id,i)"> Editar </p>
-    <p id="delete-button" (click)="abrirModalEliminarUsuario(dato.id,i)">Eliminar</p>
+    <div class="edit-button-container">
+      <button id="edit-button">
+        <p (click)="abrirModalEditarUsuario(dato.id,i,dato.nombre,dato.correo,dato.telefono)"> Editar </p>
+      </button>
+    </div>
+    <div class="delete-button-container">
+      <button id="delete-button">
+        <p (click)="abrirModalEliminarUsuario(dato.id,i)">Eliminar</p>
+      </button>
+    </div>
   </div>
+</div>
 
 
 
-  <app-footer></app-footer>
-  <router-outlet></router-outlet>
+<router-outlet></router-outlet>
